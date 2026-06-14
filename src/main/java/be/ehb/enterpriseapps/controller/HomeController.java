@@ -15,4 +15,16 @@ public class HomeController {
     public String about() {
         return "about";
     }
+    @GetMapping("/new")
+    public String newEvent() {
+        return "new";
+    }
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
+    @GetMapping("/details")
+    public String details() {
+        return "details";
+    }
 }
