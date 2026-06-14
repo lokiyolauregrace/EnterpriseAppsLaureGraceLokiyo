@@ -28,7 +28,20 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("events", events);
+
+        List<Event> laatsteEvents;
+
+        if (events.size() > 10) {
+            laatsteEvents = events.subList(
+                    events.size() - 10,
+                    events.size()
+            );
+        } else {
+            laatsteEvents = events;
+        }
+
+        model.addAttribute("events", laatsteEvents);
+
         return "index";
     }
 
