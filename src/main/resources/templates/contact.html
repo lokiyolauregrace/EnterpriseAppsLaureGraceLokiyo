@@ -1,38 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Contact</title>
+    <meta charset="UTF-8">
+    <title>Contact - Anderlecht Community NGO</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Contact</h1>
+<header>
+    <h1>Anderlecht Community NGO</h1>
 
-<a href="/">Home</a> |
-<a href="/new">Nieuw evenement</a> |
-<a href="/about">About</a> |
-<a href="/contact">Contact</a>
-
-<hr>
-
-<form>
-
-    <label>Naam:</label><br>
-    <input type="text"><br><br>
-
-    <label>Email:</label><br>
-    <input type="email"><br><br>
-
-    <label>Bericht:</label><br>
-    <textarea rows="5" cols="40"></textarea><br><br>
-
-    <button type="submit">Versturen</button>
-
-</form>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/new">Nieuw evenement</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>
 
 <hr>
+
+<main>
+
+    <h2>Contacteer ons</h2>
+
+    <p>
+        Heb je een vraag, suggestie of wil je samenwerken?
+        Stuur ons een bericht via onderstaand formulier.
+    </p>
+
+    <form th:action="@{/contact}"
+          th:object="${contactMessage}"
+          method="post">
+
+        <label for="naam">Naam:</label><br>
+        <input type="text"
+               id="naam"
+               th:field="*{naam}">
+
+        <p th:if="${#fields.hasErrors('naam')}"
+           th:errors="*{naam}"></p>
+
+        <br>
+
+        <label for="email">Email:</label><br>
+        <input type="email"
+               id="email"
+               th:field="*{email}">
+
+        <p th:if="${#fields.hasErrors('email')}"
+           th:errors="*{email}"></p>
+
+        <br>
+
+        <label for="bericht">Bericht:</label><br>
+
+        <textarea id="bericht"
+                  rows="5"
+                  th:field="*{bericht}"></textarea>
+
+        <p th:if="${#fields.hasErrors('bericht')}"
+           th:errors="*{bericht}"></p>
+
+        <br><br>
+
+        <button type="submit">
+            Versturen
+        </button>
+
+    </form>
+
+</main>
 
 <footer>
-    © 2026 Anderlecht Community NGO
+    <hr>
+    <p>© 2026 Anderlecht Community NGO</p>
 </footer>
 
 </body>

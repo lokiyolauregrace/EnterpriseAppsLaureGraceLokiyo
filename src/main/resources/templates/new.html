@@ -1,46 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Nieuw Evenement</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Nieuw Evenement</h1>
+<header>
+    <h1>Anderlecht Community NGO</h1>
 
-<a href="/">Home</a> |
-<a href="/new">Nieuw evenement</a> |
-<a href="/about">About</a>
-
-<hr>
-
-<form>
-
-    <label>Titel:</label><br>
-    <input type="text"><br><br>
-
-    <label>Omschrijving:</label><br>
-    <textarea></textarea><br><br>
-
-    <label>Organisatie:</label><br>
-    <input type="text"><br><br>
-
-    <label>Email:</label><br>
-    <input type="email"><br><br>
-
-    <label>Tijdstip:</label><br>
-    <input type="datetime-local"><br><br>
-
-    <label>Locatie:</label><br>
-    <input type="text"><br><br>
-
-    <button type="submit">Opslaan</button>
-
-</form>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/new">Nieuw evenement</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>
 
 <hr>
+
+<main>
+
+    <h2>Nieuw evenement toevoegen</h2>
+
+    <p>
+        Vul onderstaande gegevens in om een nieuw evenement toe te voegen.
+    </p>
+
+    <form th:action="@{/new}"
+          th:object="${event}"
+          method="post">
+
+        <label for="titel">Titel:</label><br>
+        <input type="text"
+               id="titel"
+               th:field="*{titel}">
+
+        <p th:if="${#fields.hasErrors('titel')}"
+           th:errors="*{titel}"></p>
+
+        <br>
+
+        <label for="omschrijving">Omschrijving:</label><br>
+        <textarea id="omschrijving"
+                  th:field="*{omschrijving}"
+                  rows="5"></textarea>
+
+        <br><br>
+
+        <label for="organisatie">Organisatie:</label><br>
+        <input type="text"
+               id="organisatie"
+               th:field="*{organisatie}">
+
+        <br><br>
+
+        <label for="email">Email contactpersoon:</label><br>
+        <input type="email"
+               id="email"
+               th:field="*{email}">
+
+        <p th:if="${#fields.hasErrors('email')}"
+           th:errors="*{email}"></p>
+
+        <br>
+
+        <label for="tijdstip">Tijdstip:</label><br>
+        <input type="datetime-local"
+               id="tijdstip"
+               th:field="*{tijdstip}">
+
+        <br><br>
+
+        <h3>Locatie</h3>
+
+        <label for="locatienaam">Naam locatie:</label><br>
+        <input type="text"
+               id="locatienaam"
+               th:field="*{locatie.naam}">
+
+        <br><br>
+
+        <label for="adres">Adres:</label><br>
+        <input type="text"
+               id="adres"
+               th:field="*{locatie.adres}">
+
+        <br><br>
+
+        <label for="capaciteit">Capaciteit:</label><br>
+        <input type="number"
+               id="capaciteit"
+               th:field="*{locatie.capaciteit}">
+
+        <br><br>
+
+        <button type="submit">
+            Evenement opslaan
+        </button>
+
+    </form>
+
+</main>
 
 <footer>
-    © 2026 Anderlecht Community NGO
+    <hr>
+    <p>© 2026 Anderlecht Community NGO</p>
 </footer>
 
 </body>

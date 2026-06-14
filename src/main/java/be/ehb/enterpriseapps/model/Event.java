@@ -5,23 +5,27 @@ import jakarta.validation.constraints.NotBlank;
 
 public class Event {
 
-    @NotBlank
+    @NotBlank(message = "Titel is verplicht")
     private String titel;
 
-    @NotBlank
+    @NotBlank(message = "Omschrijving is verplicht")
     private String omschrijving;
 
-    @NotBlank
+    @NotBlank(message = "Organisatie is verplicht")
     private String organisatie;
 
-    @Email
-    @NotBlank
+    @Email(message = "Geef een geldig e-mailadres")
+    @NotBlank(message = "Email is verplicht")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Tijdstip is verplicht")
     private String tijdstip;
 
     private Location locatie;
+
+    public Event() {
+        this.locatie = new Location();
+    }
 
     public String getTitel() {
         return titel;

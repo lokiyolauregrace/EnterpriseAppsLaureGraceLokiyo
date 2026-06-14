@@ -1,30 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Details evenement</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Details evenement</h1>
+<header>
+    <h1>Anderlecht Community NGO</h1>
 
-<a href="/">Home</a> |
-<a href="/new">Nieuw evenement</a> |
-<a href="/about">About</a> |
-<a href="/contact">Contact</a>
-
-<hr>
-
-<p><strong>Titel:</strong> Voedselactie 2026</p>
-<p><strong>Organisatie:</strong> Anderlecht Community NGO</p>
-<p><strong>Omschrijving:</strong> Hulpactie voor gezinnen.</p>
-<p><strong>Email:</strong> info@ngo.be</p>
-<p><strong>Tijdstip:</strong> 15/06/2026 14:00</p>
-<p><strong>Locatie:</strong> Campus Kaai</p>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/new">Nieuw evenement</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>
 
 <hr>
+
+<main>
+
+    <h2>Details evenement</h2>
+
+    <p>
+        <strong>Titel:</strong>
+        <span th:text="${event.titel}"></span>
+    </p>
+
+    <p>
+        <strong>Omschrijving:</strong><br>
+        <span th:text="${event.omschrijving}"></span>
+    </p>
+
+    <p>
+        <strong>Organisatie:</strong>
+        <span th:text="${event.organisatie}"></span>
+    </p>
+
+    <p>
+        <strong>Contactpersoon:</strong>
+        <span th:text="${event.email}"></span>
+    </p>
+
+    <p>
+        <strong>Tijdstip:</strong>
+        <span th:text="${event.tijdstip}"></span>
+    </p>
+
+    <h3>Locatie</h3>
+
+    <p>
+        <strong>Naam:</strong>
+        <span th:text="${event.locatie.naam}"></span>
+    </p>
+
+    <p>
+        <strong>Adres:</strong>
+        <span th:text="${event.locatie.adres}"></span>
+    </p>
+
+    <p>
+        <strong>Capaciteit:</strong>
+        <span th:text="${event.locatie.capaciteit}"></span>
+        personen
+    </p>
+
+</main>
 
 <footer>
-    © 2026 Anderlecht Community NGO
+    <hr>
+    <p>© 2026 Anderlecht Community NGO</p>
 </footer>
 
 </body>

@@ -1,56 +1,73 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Anderlecht Community NGO</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h1>Welkom bij Anderlecht Community NGO</h1>
+<header>
+    <h1>Anderlecht Community NGO</h1>
+    <p>Samen bouwen aan een sterkere gemeenschap.</p>
 
-<p>Deze website werd gemaakt voor het vak Enterprise Applications.</p>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/new">Nieuw evenement</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>
 
-<nav>
-    <a href="/">Home</a> |
-    <a href="/about">About</a> |
-    <a href="/contact">Contact</a> |
-    <a href="/new">Nieuw evenement</a>
-</nav>
+<main>
 
-<hr>
+    <h2>Laatste evenementen</h2>
 
-<h2>Laatste evenementen</h2>
+    <p>
+        Hieronder vind je een overzicht van de meest recente evenementen.
+    </p>
 
-<table border="1">
-    <tr>
-        <th>Titel</th>
-        <th>Organisatie</th>
-        <th>Details</th>
-    </tr>
+    <table>
 
-    <tr>
-        <td>Voedselactie 2026</td>
-        <td>Anderlecht Community NGO</td>
-        <td><a href="/details">Details</a></td>
-    </tr>
+        <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Organisatie</th>
+            <th>Details</th>
+        </tr>
+        </thead>
 
-    <tr>
-        <td>Kledinginzameling</td>
-        <td>Partnerorganisatie</td>
-        <td><a href="/details">Details</a></td>
-    </tr>
+        <tbody>
 
-</table>
+        <tr th:each="event, stat : ${events}">
+            <td th:text="${event.titel}"></td>
 
-<br>
+            <td th:text="${event.organisatie}"></td>
 
-<a href="/new">
-    <button>Nieuw evenement toevoegen</button>
-</a>
+            <td>
+                <a th:href="@{/details/{id}(id=${stat.index})}">
+                    Bekijk
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <a href="/new">
+        <button>
+            Nieuw evenement toevoegen
+        </button>
+    </a>
+
+</main>
 
 <footer>
     <hr>
-    © 2026 Anderlecht Community NGO
+    <p>© 2026 Anderlecht Community NGO</p>
 </footer>
 
 </body>
